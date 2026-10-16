@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Summerstrand Rooms Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- A4 poster for noticeboards. Print at 100% scale (no "fit to page"). -->
+  <style>
+    @page { size: A4; margin: 0; }
+    :root { --navy: #14213D; --navy-2: #1F2F55; --sun: #FFC93C; --green: #1DB954; --cream: #FFF9EC; --muted: #5D6478; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #d9d6cf; }
+    body { font-family: "Inter", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { width: 210mm; height: 297mm; margin: 0 auto; background: var(--cream); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+    h1, .bric { font-family: "Bricolage Grotesque", sans-serif; letter-spacing: -0.03em; line-height: .92; }
+
+    .top { background: var(--navy); color: #fff; padding: 10mm 12mm 17mm; position: relative; overflow: hidden; }
+    .top::after { content: ""; position: absolute; left: -5%; right: -5%; bottom: -1px; height: 9mm; background: var(--cream); clip-path: ellipse(60% 100% at 50% 100%); }
+    .glow { position: absolute; width: 120mm; height: 120mm; border-radius: 50%; right: -40mm; top: -50mm; background: radial-gradient(circle, rgba(255,201,60,.35), transparent 65%); }
+    .tags { display: flex; gap: 3mm; position: relative; }
+    .tag { font-weight: 800; font-size: 10.5pt; padding: 1.6mm 4mm; border-radius: 99px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); }
+    .tag.sun { background: var(--sun); color: var(--navy); border-color: var(--sun); }
+    h1 { font-size: 54pt; font-weight: 800; margin-top: 5mm; position: relative; }
+    h1 span { color: var(--sun); }
+    .xh { font: 700 13pt "Inter"; color: rgba(255,255,255,.75); margin-top: 3mm; position: relative; }
+    .sticker { position: absolute; right: 14mm; top: 16mm; width: 42mm; height: 42mm; border-radius: 50%; background: var(--sun); color: var(--navy); display: grid; place-items: center; text-align: center; transform: rotate(10deg); box-shadow: 0 6mm 10mm -5mm rgba(0,0,0,.5); }
+    .sticker::before { content: ""; position: absolute; inset: -2.5mm; border-radius: 50%; border: 2px dashed var(--sun); }
+    .sticker b { display: block; font: 800 25pt/1 "Bricolage Grotesque"; letter-spacing: -0.03em; }
+    .sticker small { font-weight: 800; font-size: 9pt; letter-spacing: .1em; text-transform: uppercase; }
+
+    .photos { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 3mm; padding: 0 12mm; margin-top: -2mm; position: relative; z-index: 2; }
+    .photos div { height: 34mm; border-radius: 4mm; background: center/cover no-repeat; border: 1.2mm solid #fff; box-shadow: 0 4mm 8mm -5mm rgba(20,33,61,.5); }
+
+    .mid { display: grid; grid-template-columns: 1fr 62mm; gap: 8mm; padding: 6mm 12mm 0; align-items: start; }
+    .lead { font: 700 14pt/1.35 "Inter"; color: var(--navy); }
+    ul { list-style: none; margin-top: 4mm; display: grid; gap: 2.2mm; }
+    li { display: flex; gap: 3mm; align-items: center; font-weight: 700; font-size: 12.5pt; color: var(--navy); }
+    li i { font-style: normal; width: 8mm; height: 8mm; flex: none; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; font-size: 10pt; font-weight: 800; }
+    .houses { margin-top: 5mm; font-size: 10pt; color: var(--muted); font-weight: 600; line-height: 1.5; }
+    .houses b { color: var(--navy); }
+
+    .qrbox { background: var(--navy); border-radius: 6mm; padding: 5mm; text-align: center; color: #fff; }
+    .qrbox .scan { font: 800 15pt/1.05 "Bricolage Grotesque"; color: var(--sun); margin-bottom: 3.5mm; }
+    .qrbox img { width: 100%; display: block; border-radius: 3mm; background: #fff; }
+    .qrbox p { font-size: 9pt; font-weight: 600; margin-top: 3mm; color: rgba(255,255,255,.8); line-height: 1.35; }
+
+    .safe { margin: 5mm 12mm 0; background: #fff; border: 2px solid var(--green); border-radius: 5mm; padding: 3.5mm 5mm; display: flex; gap: 4mm; align-items: center; }
+    .safe span { font-size: 18pt; }
+    .safe b { color: var(--navy); font-size: 11pt; }
+    .safe p { color: var(--muted); font-size: 9.5pt; }
+
+    .wa { margin: 4mm 12mm 6mm; display: flex; align-items: center; gap: 4mm; background: var(--green); color: #fff; border-radius: 5mm; padding: 4mm 6mm; }
+    .wa svg { width: 13mm; height: 13mm; flex: none; }
+    .wa b { display: block; font: 800 22pt/1 "Bricolage Grotesque"; letter-spacing: -0.02em; }
+    .wa small { font-weight: 700; font-size: 10pt; opacity: .9; }
+
+    .tabs { margin-top: auto; display: grid; grid-template-columns: repeat(8, 1fr); border-top: 2px dashed var(--navy); }
+    .tabs div { height: 34mm; border-right: 2px dashed var(--navy); display: flex; align-items: center; justify-content: center; }
+    .tabs div:last-child { border-right: 0; }
+    .tabs span { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 800; font-size: 10pt; color: var(--navy); text-align: center; line-height: 1.25; }
+    .tabs span small { display: block; font-weight: 600; font-size: 8pt; color: var(--muted); }
+    .cut { position: absolute; left: 4mm; bottom: 31.5mm; background: var(--cream); padding: 0 1mm; font-size: 12pt; color: var(--navy); }
+    .credit { font-size: 7.5pt; color: var(--muted); font-weight: 600; margin-top: 3mm; }
+
+    .print-btn { position: fixed; right: 16px; bottom: 16px; background: var(--navy); color: #fff; border: 0; padding: 14px 22px; border-radius: 99px; font: 700 14px "Inter"; cursor: pointer; }
+    @media print { html, body { background: none; } .page { margin: 0; } .print-btn { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top">
+      <div class="glow"></div>
+      <div class="tags"><span class="tag sun">Nov – Dec – Jan</span><span class="tag">Summerstrand</span></div>
+      <h1>Rooms<br>to rent<span>.</span></h1>
+      <p class="xh">Amagumbi okuqesha · R2,500 ngenyanga</p>
+      <div class="sticker"><div><b>R2,500</b><small>a month</small></div></div>
+    </div>
+
+    <div class="photos">
+      <div style="background-image:url('../photos/tilbury4-room.jpg')"></div>
+      <div style="background-image:url('../photos/admiralty23-room.jpg')"></div>
+      <div style="background-image:url('../photos/admiralty31-lounge.jpg')"></div>
+    </div>
+
+    <div class="mid">
+      <div>
+        <p class="lead">Your own single room in a student house. For students working after exams, and anyone who needs a place to stay.</p>
+        <ul>
+          <li><i>✓</i>Single rooms, one person each</li>
+          <li><i>✓</i>Walk to work, NMU &amp; the beach</li>
+          <li><i>✓</i>Wi-Fi · secure houses</li>
+          <li><i>✓</i>16 rooms in 4 houses</li>
+        </ul>
+        <p class="houses"><b>6 Bradley Rd · 23 &amp; 31 Admiralty Way · 4 Tilbury Rd</b></p>
+        <p class="credit">Website by Njabulisto Digitals</p>
+      </div>
+      <div class="qrbox">
+        <div class="scan">Scan to pick<br>your room 📲</div>
+        <img src="qr.svg" alt="QR code to the Summerstrand Rooms website">
+        <p>See photos of every room and apply in 1 minute</p>
+      </div>
+    </div>
+
+    <div class="safe"><span>🛡️</span><div><b>View the room first. Pay after.</b><p>We never ask for money before you have seen the room.</p></div></div>
+
+    <div class="wa">
+      <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+      <div><b>WhatsApp 068 483 9679</b><small>No QR scanner? Just send "ROOM" on WhatsApp.</small></div>
+    </div>
+
+    <span class="cut">✂</span>
+    <div class="tabs">
+      <div><span>068 483 9679<small>Rooms R2,500</small></span></div>
+      <div><span>068 483 9679<small>Rooms R2,500</small></span></div>
+      <div><span>068 483 9679<small>Rooms R2,500</small></span></div>
+      <div><span>068 483 9679<small>Rooms R2,500</small></span></div>
+      <div><span>068 483 9679<small>Rooms R2,500</small></span></div>
+      <div><span>068 483 9679<small>Rooms R2,500</small></span></div>
+      <div><span>068 483 9679<small>Rooms R2,500</small></span></div>
+      <div><span>068 483 9679<small>Rooms R2,500</small></span></div>
+    </div>
+  </div>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</body>
+</html>
